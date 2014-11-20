@@ -1,0 +1,2 @@
+db.knowledge.insert({text: cat('client/knowledge/c.md'), name: 'c', slugName: 'c'});
+db.knowledge.insert({text: cat('client/knowledge/c++.md'), name: 'c++', slugName: 'c++'});
