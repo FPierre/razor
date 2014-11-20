@@ -1,0 +1,277 @@
+@import '.meteor/local/build/programs/server/assets/packages/reywood_bootstrap3-sass/bootstrap';
+@import 'variables';
+
+.box {
+    background-color: $light-white;
+    border: 1px solid $dark-white;
+    border-radius: 0;
+}
+
+.link-box {
+    @extend .box;
+
+    display: block;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    @extend .container-fluid;
+
+    font: {
+        family: Arial;
+        font-size: 1.4rem;
+    }
+    color: $dark-grey;
+    background-color: $medium-white;
+}
+
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.wrapper {
+    @include make-row();
+}
+
+#nav {
+    @extend .col-sm-1;
+
+    height: 100%;
+    position: fixed;
+    padding: {
+        right: 0; // Reset
+        left: 0; // Reset
+    }
+    background-color: $light-black;
+
+    h1 {
+        margin: {
+            top: 0;
+            bottom: 0;
+        }
+
+        a {
+            display: block;
+            line-height: $header-height;
+            text-align: center;
+            font: {
+                weight: 600;
+                size: 1.6rem;
+            }
+            color: $light-white;
+            background-color: $dark-red;
+        }
+    }
+}
+
+.header-wrapper {
+    @extend .col-sm-12;
+    @extend .navbar;
+    @extend .navbar-default;
+}
+
+#header {
+    @include make-row();
+
+    height: $header-height;
+    background-color: $header-background-color;
+    border: 1px solid $dark-white;
+}
+
+#content {
+    @extend .col-sm-11;
+    @extend .col-sm-offset-1;
+}
+
+#main {
+    @extend .col-sm-12;
+
+    margin-top: 15px;
+}
+
+.index-page {
+    ul {
+        @include make-row();
+
+        list-style: none;
+        
+        li {
+            @extend .col-sm-2;
+
+            a {
+                @extend .link-box; 
+            }
+        }
+    }
+}
+
+.knowledge-list {
+    ul {
+        @include make-row();
+
+        list-style: none;
+
+        li {
+            @extend .col-sm-2;
+
+            a {
+                @extend .link-box;
+            }
+        }
+    }
+}
+
+.knowledge-page {
+    @include make-row();
+
+    #edit-area {
+        @extend .box;
+
+        padding: 7px;
+        border-right: none;
+    }
+
+    #render-area {
+        @extend .box;
+
+        font-family: 'Source Sans Pro', sans-serif;
+
+        h1 {
+            margin: {
+                top: 60px;
+                bottom: 60px;
+            }
+            font: {
+                weight: 300;
+                size: 4.5rem;
+            }
+        }
+
+        h2 {
+            margin: {
+                top: 50px;
+                bottom: 50px;
+            }
+            font: {
+                weight: 300;
+                size: 3.5rem;
+            }
+
+            &:first-letter {
+                font-weight: 700;
+            }
+        }
+
+        h3 {
+            margin: {
+                top: 40px;
+                bottom: 40px;
+            }
+            font-weight: 300;
+        }
+
+        h4 {
+            margin: {
+                top: 30px;
+                bottom: 30px;
+            }
+            font-weight: 300;
+        }
+
+        h5 {
+            margin: {
+                top: 20px;
+                bottom: 20px;
+            }
+            font-weight: 300;
+        }
+
+        h6 {
+            margin: {
+                top: 10px;
+                bottom: 10px;
+            }
+            font-weight: 300;
+        }
+
+        ul {
+            padding-left: 30px;
+        }
+    }
+
+    #header {
+        h2 {
+            @extend .col-sm-5;
+
+            margin: {
+                top: 0; // Reset
+                bottom: 0; // Reset
+            }
+            line-height: $header-height;
+        }
+
+        .knowledge-save {
+            @extend .col-sm-2;
+
+            line-height: $header-height;
+            color: $dark-red;
+
+            &.saved {
+                color: $light-black;
+            }
+        }
+
+        #dropdown-nav {
+            @extend .box;
+
+            span {
+                margin-left: 7px;
+            }
+        }
+
+        .dropdown-menu {
+            @extend .box;
+
+            font-family: 'Source Sans Pro', sans-serif;
+
+            .h2 {
+                margin: {
+                    top: 0;
+                    bottom: 0;
+                }
+                padding: {
+                    right: 12px;
+                    left: 12px;
+                }
+                font-size: 1.7rem;
+
+                &:first-letter {
+                    font-weight: 700;
+                }
+            }
+
+            .h3 {
+                margin: {
+                    top: 0;
+                    bottom: 0;
+                }
+                padding-left: 20px;
+                font-size: 1.4rem;
+            }
+
+            li {
+                &:hover {
+                    background-color: $content-background-color;
+                }
+            }
+        }
+    }
+}
