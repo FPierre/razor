@@ -43,6 +43,7 @@ a {
 
 #nav {
     @extend .col-sm-1;
+    @extend .hidden-xs;
 
     height: 100%;
     position: fixed;
@@ -52,6 +53,17 @@ a {
     }
     background-color: $light-black;
 
+    &.smaller {
+        $new-header-height: $header-height / 1.5;
+
+        h1 {
+            a {
+                font-size: 1.3rem;
+                line-height: $new-header-height;
+            }
+        }
+    }
+
     h1 {
         margin: {
             top: 0;
@@ -59,31 +71,145 @@ a {
         }
 
         a {
+            @extend .header-transition;
+
             display: block;
             line-height: $header-height;
             text-align: center;
             font: {
                 weight: 600;
-                size: 1.6rem;
+                size: 1.7rem;
             }
             color: $light-white;
             background-color: $dark-red;
         }
+    }
+
+    ul {
+        list-style: none;
     }
 }
 
 .header-wrapper {
     @extend .col-sm-12;
     @extend .navbar;
-    @extend .navbar-default;
+
+    width: 100%;
+    position: fixed;
+    border: none;
+    z-index: 999;
+
+    &.smaller {
+        $new-header-height: $header-height / 1.5;
+
+        #header {
+            height: $new-header-height;
+
+            h2 {
+                font-size: 2.4rem;
+                line-height: $new-header-height;
+            }
+
+            .knowledge-save {
+                font-size: 1.2rem;
+                line-height: $new-header-height;
+            }
+
+            #dropdown-nav {
+                margin-top: 3px;
+            }
+
+            .dropdown-menu {
+                .h2 {
+                    font-size: 1.7rem;
+                }
+
+                .h3 {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
 }
 
 #header {
+    @extend .header-transition;
     @include make-row();
 
     height: $header-height;
     background-color: $header-background-color;
     border-bottom: 1px solid $dark-white;
+
+    h2 {
+        @extend .col-xs-4;
+        @extend .header-transition;
+
+        margin: {
+            top: 0; // Reset
+            bottom: 0; // Reset
+        }
+        line-height: $header-height;
+    }
+
+    .knowledge-save {
+        @extend .col-xs-2;
+        @extend .header-transition;
+
+        line-height: $header-height;
+        color: $dark-red;
+
+        &.saved {
+            color: $light-black;
+        }
+    }
+
+    #dropdown-nav {
+        @extend .box;
+        @extend .header-transition;
+
+        margin-top: 12px;
+
+        span {
+            margin-left: 9px;
+        }
+    }
+
+    .dropdown-menu {
+        @extend .box;
+
+        font-family: 'Source Sans Pro', sans-serif;
+
+        .h2 {
+            margin: {
+                top: 0;
+                bottom: 0;
+            }
+            padding: {
+                right: 12px;
+                left: 12px;
+            }
+            font-size: 1.7rem;
+
+            &:first-letter {
+                font-weight: 700;
+            }
+        }
+
+        .h3 {
+            margin: {
+                top: 0;
+                bottom: 0;
+            }
+            padding-left: 20px;
+            font-size: 1.4rem;
+        }
+
+        li {
+            &:hover {
+                background-color: $content-background-color;
+            }
+        }
+    }
 }
 
 #content {
@@ -94,11 +220,15 @@ a {
 #main {
     @extend .col-sm-12;
 
-    margin-top: 15px;
+    margin: {
+        top: $header-height + 15px;
+        bottom: 15px;
+    }
 }
 
 .index-page {
     ul {
+        @extend .nav;
         @include make-row();
 
         list-style: none;
@@ -115,6 +245,7 @@ a {
 
 .knowledge-list {
     ul {
+        @extend .nav;
         @include make-row();
 
         list-style: none;
@@ -133,6 +264,7 @@ a {
     @include make-row();
 
     #edit-area {
+        @extend .hidden-xs;
         @extend .box;
 
         padding: 7px;
@@ -145,10 +277,7 @@ a {
         font-family: 'Source Sans Pro', sans-serif;
 
         h1 {
-            margin: {
-                top: 60px;
-                bottom: 60px;
-            }
+            margin-bottom: 60px;
             font: {
                 weight: 300;
                 size: 4.5rem;
@@ -202,90 +331,43 @@ a {
             font-weight: 300;
         }
 
+        table {
+            width: 98%;
+            margin: 10px auto;
+
+            thead {
+                tr {
+                    height: 34px;
+                    border-bottom: 2px solid $light-grey;
+                }
+            }
+
+            tbody {
+                tr {
+                    height: 30px;
+                    border-bottom: 1px solid $dark-white;
+                }
+            }
+        }
+
         pre {
-            background-color: $light-black;
+            background-color: $dark-white;
             border: none;
             border-radius: 0;
         }
 
         code {
-            background-color: $light-black;
-            color: $light-white;
+            background-color: $dark-white;
+            color: $dark-grey;
             border-radius: 0;
         }
 
         ul {
             padding-left: 30px;
         }
-    }
 
-    #header {
-        h2 {
-            @extend .col-sm-5;
-
-            margin: {
-                top: 0; // Reset
-                bottom: 0; // Reset
-            }
-            line-height: $header-height;
-        }
-
-        .knowledge-save {
-            @extend .col-sm-2;
-
-            line-height: $header-height;
-            color: $dark-red;
-
-            &.saved {
-                color: $light-black;
-            }
-        }
-
-        #dropdown-nav {
-            @extend .box;
-
-            margin-top: 12px;
-
-            span {
-                margin-left: 9px;
-            }
-        }
-
-        .dropdown-menu {
-            @extend .box;
-
-            font-family: 'Source Sans Pro', sans-serif;
-
-            .h2 {
-                margin: {
-                    top: 0;
-                    bottom: 0;
-                }
-                padding: {
-                    right: 12px;
-                    left: 12px;
-                }
-                font-size: 1.7rem;
-
-                &:first-letter {
-                    font-weight: 700;
-                }
-            }
-
-            .h3 {
-                margin: {
-                    top: 0;
-                    bottom: 0;
-                }
-                padding-left: 20px;
-                font-size: 1.4rem;
-            }
-
-            li {
-                &:hover {
-                    background-color: $content-background-color;
-                }
-            }
+        p {
+            text-align: justify;
         }
     }
 }

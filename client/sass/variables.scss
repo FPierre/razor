@@ -1,5 +1,5 @@
 $dark-black: #222;
-$light-black: #353E59;
+$light-black: #353535;
 $dark-grey: #555;
 $light-grey: #999;
 $dark-white: #E2E2E2;
@@ -14,3 +14,11 @@ $nav-background-color: $light-black;
 $header-height: 60px;
 $header-background-color: $light-white;
 $content-background-color: $dark-white;
+
+.header-transition {
+    -webkit-transition: all 0.3s;
+       -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+         -o-transition: all 0.3s;
+            transition: all 0.3s;
+}

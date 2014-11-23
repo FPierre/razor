@@ -36,6 +36,25 @@ if (Meteor.isClient) {
 
             Session.set('knowledgeSave', false);
         }
+
+        /*function init() {
+            window.addEventListener('scroll', function(e) {
+                var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                    shrinkOn = 300,
+                    header = document.querySelector("header");
+        
+                if (distanceY > shrinkOn) {
+                    classie.add(header, "smaller");
+                }
+                else {
+                    if (classie.has(header, "smaller")) {
+                        classie.remove(header, "smaller");
+                    }
+                }
+            });
+        }
+
+        window.onload = init();*/
     });
 
     Template.KnowledgePage.rendered = function() {
@@ -80,6 +99,22 @@ if (Meteor.isClient) {
 
             this.rendered = true;
         }
+    };
+
+    Template.WikiLayout.rendered = function() {
+        $(window).scroll(function() {
+            var distanceY      = window.pageYOffset || document.documentElement.scrollTop,
+                $smallElements = $('.header-wrapper, #nav');
+
+            if (distanceY > 150) {
+                $smallElements.addClass('smaller');
+            }
+            else {
+                if ($smallElements.hasClass('smaller')) {
+                    $smallElements.removeClass('smaller');
+                }
+            }
+        });
     };
 }
 
