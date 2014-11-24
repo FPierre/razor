@@ -55,7 +55,7 @@
             <header id="header">
                 <h2>{{item.name}}</h2>
 
-                <span class="knowledge-save {{#if knowledgeSaved}}saved{{/if}}">Sauvegarde</span>
+                <span class="knowledge-save {{#if knowledgeSaved}}saved{{/if}}">Sauvegarde<span class="glyphicon glyphicon-floppy-{{#if knowledgeSaved}}saved{{else}}remove{{/if}}"></span></span>
 
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-nav" data-toggle="dropdown" aria-expanded="true">
@@ -76,9 +76,11 @@
 {{/markdown}}
             </section>
         </div>
+
+        <button id="scroll-top"><span class="glyphicon glyphicon-chevron-up"></span></button>
     </div>
 
     {{#contentFor 'nav'}}
-        <li><button id="scroll-top"><span class="glyphicon glyphicon-chevron-up"></span></button></li>
+        
     {{/contentFor}}
 </template>

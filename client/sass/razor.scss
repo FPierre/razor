@@ -59,7 +59,7 @@ a {
         h1 {
             a {
                 font-size: 1.3rem;
-                line-height: $new-header-height;
+                line-height: $new-header-height - 1;
             }
         }
     }
@@ -74,7 +74,7 @@ a {
             @extend .header-transition;
 
             display: block;
-            line-height: $header-height;
+            line-height: $header-height - 1;
             text-align: center;
             font: {
                 weight: 600;
@@ -106,7 +106,7 @@ a {
             height: $new-header-height;
 
             h2 {
-                font-size: 2.4rem;
+                font-size: 1.7rem;
                 line-height: $new-header-height;
             }
 
@@ -148,6 +148,7 @@ a {
             top: 0; // Reset
             bottom: 0; // Reset
         }
+        font-size: 2.2rem;
         line-height: $header-height;
     }
 
@@ -159,10 +160,18 @@ a {
         color: $dark-red;
 
         &.saved {
-            color: $light-black;
+            color: $dark-blue;
+        }
+
+        span {
+            margin-left: 7px;
         }
     }
 
+    /*.dropdown {
+        @extend .col-sm-4;
+    }
+    
     #dropdown-nav {
         @extend .box;
         @extend .header-transition;
@@ -175,6 +184,7 @@ a {
     }
 
     .dropdown-menu {
+        @extend .dropdown-menu-right;
         @extend .box;
 
         font-family: 'Source Sans Pro', sans-serif;
@@ -209,7 +219,7 @@ a {
                 background-color: $content-background-color;
             }
         }
-    }
+    }*/
 }
 
 #content {
@@ -236,6 +246,8 @@ a {
         li {
             @extend .col-sm-2;
 
+            margin-top: 15px;
+
             a {
                 @extend .link-box; 
             }
@@ -252,6 +264,8 @@ a {
 
         li {
             @extend .col-sm-2;
+
+            margin: top: 15px;
 
             a {
                 @extend .link-box;
@@ -368,6 +382,20 @@ a {
 
         p {
             text-align: justify;
+        }
+    }
+
+    #scroll-top {
+        @extend .box;
+
+        position: fixed;
+        right: 1px;
+        bottom: 1px;
+        height: 30px;
+        width: 30px;
+
+        &:hover {
+            color: $dark-black;
         }
     }
 }

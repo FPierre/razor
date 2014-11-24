@@ -36,25 +36,6 @@ if (Meteor.isClient) {
 
             Session.set('knowledgeSave', false);
         }
-
-        /*function init() {
-            window.addEventListener('scroll', function(e) {
-                var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-                    shrinkOn = 300,
-                    header = document.querySelector("header");
-        
-                if (distanceY > shrinkOn) {
-                    classie.add(header, "smaller");
-                }
-                else {
-                    if (classie.has(header, "smaller")) {
-                        classie.remove(header, "smaller");
-                    }
-                }
-            });
-        }
-
-        window.onload = init();*/
     });
 
     Template.KnowledgePage.rendered = function() {
@@ -89,8 +70,8 @@ if (Meteor.isClient) {
                 }, 2500);
             }
 
-            $('#scroll-top').click(function() {  
-                $('html, body').animate({
+            $('#scroll-top').click(function() {
+                $('body').animate({
                     scrollTop: $('#header').offset().top
                 }, 'fast');
 
