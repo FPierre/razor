@@ -1,2 +1,7 @@
 db.knowledge.insert({text: cat('client/knowledge/c.md'), name: 'C', slugName: 'c'});
 db.knowledge.insert({text: cat('client/knowledge/sass.md'), name: 'SASS', slugName: 'sass'});
+db.knowledge.insert({text: cat('client/knowledge/c++.md'), name: 'C++', slugName: 'c++'});
+db.knowledge.insert({text: cat('client/knowledge/ios.md'), name: 'iOS', slugName: 'ios'});
+db.knowledge.insert({text: cat('client/knowledge/rest.md'), name: 'REST', slugName: 'rest'});
+db.knowledge.insert({text: cat('client/knowledge/system.md'), name: 'Système', slugName: 'system'});
+db.knowledge.insert({text: cat('client/knowledge/business.md'), name: 'Business', slugName: 'business'});
