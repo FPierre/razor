@@ -1,0 +1,117 @@
+<template name="razor">
+    {{> header}}
+
+    <main>
+        {{> yield}}
+    </main>
+
+    {{> footer}}
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script> -->
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/hmac-sha1.js"></script>
+</template>
+
+
+<!-- <head>
+    <title>Razor</title>
+
+    <!-- TODO: add Modernizr --
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body></body>
+
+<template name="MainLayout">
+    {{> TopBarLayout}}
+
+    {{> yield}}
+</template>
+
+<template name="TopBarLayout">
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">Top Bar Title</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon">
+                <a href="#"><span>menu</span></a>
+            </li>
+        </ul>
+
+        <section class="top-bar-section">
+            <ul class="right">
+
+                {{> yield 'nav'}}
+
+                <li class="divider"></li>
+                <li class="has-dropdown">
+                    <a href="#">Settings</a>
+
+                    <ul class="dropdown">
+                        <li><label>Section Name</label></li>
+                        <li class="has-dropdown">
+                            <a href="#" class="">Has Dropdown, Level 1</a>
+
+                            <ul class="dropdown">
+                                <li><a href="#">Dropdown Options</a></li>
+                                <li><a href="#">Dropdown Options</a></li>
+                                <li><a href="#">Level 2</a></li>
+                                <li><a href="#">Subdropdown Option</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Dropdown Option</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </nav>
+</template>
+
+<template name="ListDocumentsPage">
+    <ul class="documents-list">
+        {{#each documents}}
+            <li><a href="/document/{{name}}">{{name}}</a></li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="ShowDocumentPage">
+    <div class="show-document-page">
+        <div class="header-wrapper">
+            <header id="header">
+                <h2>{{item.name}}</h2>
+
+                <span class="document-save {{#if knowledgeSaved}}saved{{/if}}">Sauvegarde<span class="glyphicon glyphicon-floppy-{{#if knowledgeSaved}}saved{{else}}remove{{/if}}"></span></span>
+
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-nav" data-toggle="dropdown" aria-expanded="true">
+                        Navigation<span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-nav"></ul>
+                </div>
+            </header>
+        </div>
+
+        <div id="main">
+            <textarea id="edit-area">{{item.text}}</textarea>
+
+            <section id="render-area">
+{{#markdown}}
+{{item.text}}
+{{/markdown}}
+            </section>
+        </div>
+
+        <button id="scroll-top"><span class="glyphicon glyphicon-chevron-up"></span></button>
+    </div>
+
+    {{#contentFor 'nav'}}
+
+    {{/contentFor}}
+</template>
+ -->

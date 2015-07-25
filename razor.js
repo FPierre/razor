@@ -1,146 +1,72 @@
-Iron.utils.debug = true;
-
-Knowledge = new Mongo.Collection('knowledge');
-
-Router.route('/', function() {
-    this.layout('WikiLayout');
-    this.render('IndexPage');
-});
-
-Router.route('/knowledge', function() {
-    this.layout('WikiLayout');
-    this.render('KnowledgeList', {data: {items: Knowledge.find({})}});
-});
-
-Router.route('/knowledge/:slugName', function() {
-    var item = Knowledge.findOne({slugName: this.params.slugName});
-
-    Session.set('knowledgeId', item._id);
-    Session.set('knowledgeSave', true);
-
-    this.layout('WikiLayout');
-    this.render('KnowledgePage', {data: {item: item}});  
-});
-
 if (Meteor.isClient) {
-    Template.KnowledgePage.helpers({
-        knowledgeSaved: function() {
-            return Session.get('knowledgeSave') == true && Session.get('knowledgeSaved') == 1;
-        }
+  getRequestToken = function getRequestToken(callback) {
+    Meteor.call('getRequestToken', function(error, result) {
+      console.log('getRequestToken');
+
+      Session.set('request_pair', result);
+
+      console.log("REQUEST TOKEN: " + result.token + "\nREQUEST SECRET: " + result.secret);
+
+      // TEST
+      // Router.go('/get_access_token');
     });
+  }
 
-    Template.WikiLayout.events({
-        'click #hide-edit-area': function(event, template) {
-            $('#edit-area').removeClass('col-sm-6').hide();
-            $('#render-area').toggleClass('col-sm-6', 'col-sm-12');
+  getAccessToken = function getAccessToken(url_query, request_pair, callback) {
+    Meteor.call('getAccessToken', url_query, request_pair, function(error, result) {
+      console.log('getAccessToken');
 
-            Session.set('knowledgeSave', false);
-        }
+      Session.set('request_pair', null);
+      Session.set('access_pair', result);
+
+      console.log("ACCESS TOKEN: " + result.token + "\nACCESS TOKEN SECRET: " + result.secret);
+      console.log('Done getting Access Token!<br />\n<a href="/api_call_get_user">Make an API Call</a>');
+
+      // TEST
+      // Router.go('/api_call_get_path/Etudes');
     });
+  }
 
-    Template.KnowledgePage.rendered = function() {
-        if (!this.rendered) {
-            var editArea = this.find('#edit-area');
-            var renderArea = this.find('#render-area');
-        
-            $(editArea).addClass('col-sm-6');
-            $(renderArea).addClass('col-sm-6');
-            
-            $(editArea).height($(renderArea).height()); 
+  getPath = function getPath(url_query, access_pair, callback) {
+    Meteor.call('getPath', url_query, access_pair, function(error, result) {
+      console.log('getPath');
 
-            var menuItems = ''
-
-            $('h2, h3', renderArea).each(function(index, element) {
-                menuItems += '<li role="presentation"><a role="menuitem" tabindex="-1" class="' + $(element)[0].tagName.toLowerCase() + '" href="#' + element.id + '">' + $(element).text() + '</a></li>';
-            });
-
-            $('#header ul[aria-labelledby=dropdown-nav]').append(menuItems);
-
-            Session.set('knowledgeSaved', 0);
-
-            if (Session.get('knowledgeSave')) {
-                var id = Session.get('knowledgeId');
-
-                setInterval(function() {
-                    if (editArea.value != '' && id != undefined) {
-                        var count = Knowledge.update(id, {$set: {text: editArea.value}});
-
-                        Session.set('knowledgeSaved', count);
-                    }
-                }, 2500);
-            }
-
-            $('#scroll-top').click(function() {
-                $('body').animate({
-                    scrollTop: $('#header').offset().top
-                }, 'fast');
-
-                return false;
-            });
-
-            this.rendered = true;
-        }
-    };
-
-    Template.WikiLayout.rendered = function() {
-        $(window).scroll(function() {
-            var distanceY      = window.pageYOffset || document.documentElement.scrollTop,
-                $smallElements = $('.header-wrapper, #nav');
-
-            if (distanceY > 150) {
-                $smallElements.addClass('smaller');
-            }
-            else {
-                if ($smallElements.hasClass('smaller')) {
-                    $smallElements.removeClass('smaller');
-                }
-            }
-        });
-    };
+      console.log(result);
+    });
+  }
 }
 
+if (Meteor.isServer) {
+  var CopyApi = Meteor.npmRequire('copyapi');
 
-
-
-
-
-/*
-if (Meteor.isClient) {
-    Template.body.helpers({
-        documents: function() {
-            return Knowledge.find({});
-        }
-    });
-}
-
-Template.body.events({
-"submit .new-task": function (event) {
-  // This function is called when the new task form is submitted
-  var text = event.target.text.value;
-
-  Tasks.insert({
-    text: text,
-    createdAt: new Date() // current time
+  CopyApi.configure({
+    consumer_key: '9s2E8oznH7CiR6Mdb1GdaTVVNfz5wpI9',
+    consumer_secret: 'awltTwND3pG9iumQcj7kqwFSjL4sUwPEJK4zPBasEVQiNzxR',
+    callback_url: 'http://localhost:3000/get_access_token',
   });
 
-  // Clear form
-  event.target.text.value = "";
-
-  // Prevent default form submit
-  return false;
-},
-"change .hide-completed input": function (event) {
-  Session.set("hideCompleted", event.target.checked);
+  Meteor.methods({
+    'getRequestToken': function getRequestToken() {
+      return Async.runSync(function(done) {
+        CopyApi.getRequestToken(function(error, request_pair, redirect_url) {
+          done(error, request_pair);
+        });
+      }).result;
+    },
+    // Third party redirects user back to this page, where we then request an access token
+    'getAccessToken': function getAccessToken(url_query, request_pair) {
+      return Async.runSync(function(done) {
+        CopyApi.getAccessToken(request_pair, url_query.oauth_verifier, function(error, access_pair) {
+          done(error, access_pair);
+        });
+      }).result;
+    },
+    'getPath': function getPath(url_query, access_pair) {
+      return Async.runSync(function(done) {
+        CopyApi.getPath(access_pair, url_query, function(error, data) {
+          done(error, data);
+        });
+      }).result;
+    }
+  });
 }
-});
-
-Template.task.events({
-"click .toggle-checked": function () {
-  // Set the checked property to the opposite of its current value
-  Tasks.update(this._id, {$set: {checked: ! this.checked}});
-},
-"click .delete": function () {
-  Tasks.remove(this._id);
-}
-});
-*/

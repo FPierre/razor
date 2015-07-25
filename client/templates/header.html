@@ -1,0 +1,33 @@
+<template name="header">
+  <header id="header">
+    <nav  class="teal">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Razor</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/get_request_token" class="waves-effect waves-light">Etudes</a></li>
+          <li><a href="/api_call_get_path/test" class="waves-effect waves-light">Mobile</a></li>
+          <li><a href="#modal1" class="waves-effect waves-light modal-trigger">Settings</a></li>
+        </ul>
+
+        <ul id="mobile-demo" class="side-nav">
+          <li><a href="#" class="waves-effect">Etudes</a></li>
+          <li><a href="#" class="waves-effect">Mobile</a></li>
+          <li><a href="#modal1" class="waves-effect modal-trigger">Settings</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+</template>
