@@ -8,14 +8,14 @@ Router.route('/', function() {
   this.render('index');
 });
 
+Router.route('/settings');
+// Router.route('/register');
+// Router.route('/login');
+
 Router.route('/sheets/:id', function() {
   var sheet = 'meteor';
 
   this.render('sheet', { data: { sheet: sheet }});
-});
-
-Router.route('/settings', function() {
-  this.render('sheet');
 });
 
 Router.route('/get_request_token', function() {
