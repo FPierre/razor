@@ -9,3 +9,7 @@ insecure
 iron:router
 reywood:bootstrap3-sass
 perak:markdown
+accounts-ui
+accounts-password
+meteorhacks:npm
+materialize:materialize
