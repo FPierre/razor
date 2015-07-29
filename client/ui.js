@@ -1,12 +1,9 @@
 Template.header.rendered = function() {
   $('.button-collapse').sideNav();
   $('.modal-trigger').leanModal();
+  $('#email, #name').characterCounter();
 };
 
-Template.login.rendered = function() {
-  $('#email').characterCounter();
-};
-
-Template.register.rendered = function() {
-  $('#email').characterCounter();
-};
+// Template.index.rendered = function() {
+//   $('select').material_select();
+// };

@@ -46,3 +46,24 @@ Template.login.events({
     });
   }
 });
+
+Template.index.events({
+  'submit #modal-create-file form': function(event) {
+    event.preventDefault();
+
+    var name = event.target.name.value;
+    var host = event.target.host.value;
+    var path = event.target.path.value;
+
+    Files.insert({
+      name: name,
+      host: host,
+      path: path,
+      createdAt: new Date()
+    });
+
+    event.target.name.value = '';
+    event.target.host.value = '';
+    event.target.path.value = '';
+  }
+});

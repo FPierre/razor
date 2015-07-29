@@ -1,0 +1,26 @@
+<template name="file_card">
+  <div class="card small">
+    <!-- <span class="activator"><i class="material-icons right">more_vert</i></span> -->
+    <a href="/files/{{_id}}">
+      <p class="center-align truncate">{{name}}</p>
+      <img src="images/logos/elasticsearch.svg" class="responsive-img">
+
+<!--       <object type="image/svg+xml" data="images/logos/elasticsearch.svg">
+        Logo
+      </object> -->
+    </a>
+
+   <!--  <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">{{name}} <i class="material-icons right">close</i></span>
+
+      <p>Crée le {{createdAt}}</p>
+      <p>Modifié le </p>
+      <p>Hébergé {{host}}</p>
+      <p>Statut </p>
+      <p>Location {{path}}</p>
+      <a href="#">Supprimer</a>
+    </div> -->
+  </div>
+</template>
+
+<!-- db.penguins.find().forEach(function (doc){ d = doc._id.getTimestamp(); print(d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()) }) -->
